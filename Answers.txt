@@ -1,0 +1,51 @@
+1. Understanding a basic WebGL program.
+(a) Change the window size to be 700 × 700 pixels. See the HTML file.
+Done by modifying a1.html, changing the line <canvas id="webgl" width="400" height="400"> to <canvas id="webgl" width="700" height="700">.
+
+(b) Open the console window and look for the “hello world” message. Change the code
+so that the console message reads “Assignment 1 (FOO)”, where FOO is your name.
+Changed animate.js to output this. Added several variables for assignment submission and student identification to animate.js.
+
+(c) Attempt to print the result of a division by zero. What happens?
+Console outputs "Infinity" for "console.log(1/0)".
+
+(d) Attempt to use a variable name that does not exist yet. What happens?
+"console.log(aVarThatDoesntExist)" outputs the following to the console when we do not have the line "var aVarThatDoesntExist;" above it in the javascript file (and it is not defined in any other file that is loaded before animate.js):
+
+animate.js:40 Uncaught ReferenceError: aVarThatDoesntExist is not defined
+    at main (animate.js:40)
+    at onload (a1.html:8)
+
+(e) Add a new variable using “var foo;” and then print it’s value without first initializing
+it. What happens?
+"undefined" is printed to the console, since we have not defined "foo" to be anything.
+
+(f) Change the background colour to be yellow.
+Done in animate.js - changed the arguments to gl.clearColor() in the draw() function.
+
+(g) Move the peak vertex of the house so that the roof is taller.
+Done by adjusting the houseVertices variable. This adjusts the vertex corresponding the the peak of the roof
+
+(h) Add a modelMatrix.scale(x,y,z) transformation so that the house is twice as
+large.
+Done.
+
+(i) Add a second pink copy of the house to the left of the original, with the help of a
+modelMatrix.translate(x,y,z) transformation and other code, as needed. Make
+this house red.
+Done, though it seems to cycle at a different speed.
+
+(j) WebGL/OpenGL comes with several basic primitive types, as illustrated here:
+What happens when you change TRIANGLE_FAN to LINE_LOOP? LINE_STRIP? TRIANGLE_STRIP?
+Return to using TRIANGLE_FAN at the end.
+
+LINE_LOOP: the houses are not filled with colour
+LINE_STRIP: houses are not filled at all with colour
+TRIANGLE_STRIP: houses are filled with a weird pattern, with parts filled and parts not filled.
+
+(k) Turn off the animation, by calling draw() instead of animate().
+Done.
+
+(l) Use Math.random() to draw a third house that is located at a random x,y location
+on the screen, and drawn in a random colour. Reloading the web page will then
+produce a new random location.
