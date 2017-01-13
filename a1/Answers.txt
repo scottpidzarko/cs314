@@ -49,3 +49,4 @@ Done.
 (l) Use Math.random() to draw a third house that is located at a random x,y location
 on the screen, and drawn in a random colour. Reloading the web page will then
 produce a new random location.
+Done

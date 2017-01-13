@@ -23,7 +23,12 @@ var gridSize = 10.0;    // grid size, assume grid is a square, with the maximum 
                         // also scales the square size so that it can fit in the canvas
 //var houseVertices = [ 0,0,0, 2,0,0, 2,2,0, 1,3,0, 0,2,0 ]; //bottom left, bottom right, top right, peak, top left
 var houseVertices = [ 0,0,0, 2,0,0, 2,2,0, 1,4,0, 0,2,0 ]; //do 1) g)
-var secondHouseColor; //do 1) i)
+var thirdHouseColorR = Math.random(); //For 1) l)
+var thirdHouseColorG = Math.random(); //For 1) l)
+var thirdHouseColorB = Math.random(); //For 1) l)
+//NB: these two below make the house look stupid if > 5
+var thirdHouseRandomX = Math.floor((Math.random() * (gridSize / 2)) - (gridSize / 4)); //For 1) l)
+var thirdHouseRandomY = Math.floor((Math.random() * (gridSize / 2)) - (gridSize / 4)); //For 1) l)
 
 // Other variables
 var gl;              // GL rendering context
@@ -54,8 +59,10 @@ var g_theta = 0;
 
 function main() {
   console.log(assignmentNum + ' (' + myName + ') ');
+  console.log("Student #: ", myStudentNumber);
+  console.log("CS ID: ", myCSID);
   canvas = mySetup();       // setup shaders, send vertices to the GPU
-  //Uncomment for 1) k)
+  //Selectively comment for 1) k)
   //draw();                 // draw the scene once
   animate();                // draw the scene many times (animate calls draw anyways)
 }
@@ -111,14 +118,14 @@ function draw() {
   gl.uniformMatrix4fv(u_xformMatrix, false, modelMatrix.elements); // send matrix
   drawHouse(0,1,1); // draw the house given an rgb colour
   //house 2 - the red one
-  modelMatrix.rotate(g_theta, 0,0.2,0);    // setup the transformation matrix
+  //modelMatrix.rotate(g_theta, 0,1,0);    // setup the transformation matrix
+  modelMatrix.translate(-houseVertices[3],0,0);
   gl.uniformMatrix4fv(u_xformMatrix, false, modelMatrix.elements); // send matrix
   drawHouse(1,0,0); // draw the house given an rgb colour
   //house 3 - the random one for 1) l)
-  modelMatrix.rotate(g_theta, 0,0.5,0);    // setup the transformation matrix
+  modelMatrix.translate(thirdHouseRandomX,thirdHouseRandomY,1);
   gl.uniformMatrix4fv(u_xformMatrix, false, modelMatrix.elements); // send matrix
-  drawHouse(Math.random(),Math.random(),Math.random()); // draw the house given an rgb colour
-  //gl.translate(Math.random(), Math.random(), Math.random()) //1) l)
+  drawHouse(thirdHouseColorR % 255, thirdHouseColorG % 255, thirdHouseColorB % 255); // draw the house given an rgb colour
 }
 
 /////////////////////////////////////////////////////////////////
